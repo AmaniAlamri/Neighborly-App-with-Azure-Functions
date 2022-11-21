@@ -1,8 +1,10 @@
+import json
+
 import azure.functions as func
 import pymongo
-import json
 from bson.json_util import dumps
 from bson.objectid import ObjectId
+
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
 
@@ -10,9 +12,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     if id:
         try:
-            url = "localhost"  # TODO: Update with appropriate MongoDB connection information
+            url = "mongodb://project2cosmosaccount:n98jFOmJncwCO36sgHIFmrwZwVIlGlbEB0V5AizdvrTELNhMhqDJvZOUji6sjfCxN1PvHEGT1wK6ACDbPXp3dQ==@project2cosmosaccount.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@project2cosmosaccount@"  # TODO: Update with appropriate MongoDB connection information
             client = pymongo.MongoClient(url)
-            database = client['azure']
+            database = client['MongoDB']
             collection = database['posts']
 
             query = {'_id': ObjectId(id)}
